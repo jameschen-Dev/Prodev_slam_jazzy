@@ -38,6 +38,12 @@ All notable changes to this project will be documented in this file.
 - Add `LICENSE` under GNU General Public License v3.0 (GPL-3.0).
 - Expand `slam_maze.world` with new outer boundary and internal elements.
 - Add internal zig-zag partition walls to extended maze region.
+- Add `Prodev_slam` package with Cartographer 2D SLAM integration.
+- Add Cartographer configuration file `cartographer_2d.lua`.
+- Add `cartographer.launch.py` with automatic rviz2 visualization loading.
+- Add `slam_sim.launch.py` for integrated simulation + SLAM launch.
+- Add `rviz/cartographer.rviz` SLAM visualization configuration.
+- Use binary `ros-jazzy-cartographer-ros` and `ros-jazzy-cartographer-rviz` packages instead of building from source.
 
 ### Changed
 - Restructure project layout.
@@ -46,12 +52,15 @@ All notable changes to this project will be documented in this file.
 - Update README with Docker build/run instructions, mirror selection, and WSL2 notes.
 - Update `.gitignore` with common ROS2/IDE/OS exclusions.
 - Refactor `Prodev_simulation` package to be self-contained.
+- Update Dockerfile with Cartographer dependencies (`ros-jazzy-cartographer-ros`, `ros-jazzy-cartographer-rviz`).
+- Update README with `Prodev_slam` package documentation and SLAM launch commands.
 
 ### Fixed
 - Fix `gz sim` launch command by removing invalid `-f` option.
 - Fix `Prodev_bringup` package by removing references to non-existent config/rviz directories.
 - Adjust robot initial spawn position to avoid wall collision in `slam_maze.world`.
 - Adjust poses and dimensions for new inner walls in extended maze region.
+- Fix robot drive wheel axis direction to correct forward movement.
 
 ## [0.0.1] - 2026-06-25
 
