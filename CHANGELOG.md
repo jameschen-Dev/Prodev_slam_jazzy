@@ -16,6 +16,8 @@ All notable changes to this project will be documented in this file.
 - Add GitHub issue and pull request templates.
 - Add `CONTRIBUTING.md` contribution guidelines.
 - Add `LICENSE` under GNU General Public License v3.0 (GPL-3.0).
+- Expand `slam_maze.world` with new outer boundary and internal elements.
+- Add internal zig-zag partition walls to extended maze region.
 
 ### Changed
 - Restructure project layout.
@@ -23,11 +25,13 @@ All notable changes to this project will be documented in this file.
 - Update `gazebo_sim.launch.py` to use `Prodev_simulation` and `Prodev_bringup` packages.
 - Update README with Docker build/run instructions, mirror selection, and WSL2 notes.
 - Update `.gitignore` with common ROS2/IDE/OS exclusions.
+- Refactor `Prodev_simulation` package to be self-contained.
 
 ### Fixed
 - Fix `gz sim` launch command by removing invalid `-f` option.
 - Fix `Prodev_bringup` package by removing references to non-existent config/rviz directories.
 - Adjust robot initial spawn position to avoid wall collision in `slam_maze.world`.
+- Adjust poses and dimensions for new inner walls in extended maze region.
 
 ## [0.0.1] - 2026-06-25
 

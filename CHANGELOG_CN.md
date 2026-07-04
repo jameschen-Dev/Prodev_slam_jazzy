@@ -16,6 +16,8 @@
 - 添加 GitHub Issue 和 Pull Request 模板。
 - 添加 `CONTRIBUTING.md` 贡献指南。
 - 添加 `LICENSE`，采用 GNU General Public License v3.0 (GPL-3.0) 开源协议。
+- 扩展 `slam_maze.world` 迷宫地图，添加新的外部边界和内部结构元素。
+- 在扩展迷宫区域添加内部 Z 字形隔墙。
 
 ### 变更
 - 调整项目目录结构。
@@ -23,11 +25,13 @@
 - 更新 `gazebo_sim.launch.py`，使用 `Prodev_simulation` 和 `Prodev_bringup` 功能包。
 - 更新 README，添加 Docker 构建/运行说明、镜像源选择和 WSL2 注意事项。
 - 更新 `.gitignore`，添加常见的 ROS2/IDE/系统文件忽略规则。
+- 重构 `Prodev_simulation` 功能包，使其成为自包含的功能包。
 
 ### 修复
 - 修复 `gz sim` 启动命令，移除无效的 `-f` 参数。
 - 修复 `Prodev_bringup` 功能包，移除不存在的 config/rviz 目录引用。
 - 调整机器人在 `slam_maze.world` 中的初始生成位置，避免与墙壁干涉。
+- 调整扩展迷宫区域新内墙的位姿和尺寸，避免碰撞问题。
 
 ## [0.0.1] - 2026-06-25
 
