@@ -15,6 +15,10 @@ Prodev_slam_jazzy/
 │   ├── launch/              # Launch 启动文件
 │   ├── urdf/                # 机器人 URDF 模型
 │   └── worlds/              # Gazebo 世界文件
+├── Prodev_slam/             # SLAM 功能包 (Cartographer)
+│   ├── config/              # Cartographer 配置文件
+│   ├── launch/              # SLAM 启动文件
+│   └── rviz/                # SLAM 可视化配置
 ├── .devcontainer/           # VS Code Dev Container 配置
 ├── docs/                    # 项目文档
 ├── scripts/                 # 脚本工具
@@ -44,6 +48,11 @@ Prodev_slam_jazzy/
 docker build -t prodev_jazzy .
 ```
 
+> **国内用户推荐**：使用中科大镜像源加速构建
+> ```bash
+> bash src/Prodev_slam_jazzy/scripts/docker_run.sh --build --mirror ustc
+> ```
+
 ### 运行容器
 
 **基本运行：**
@@ -72,6 +81,7 @@ docker run -it --rm --name prodev_jazzy_container \
 docker run -it --rm --name prodev_jazzy_container \
     --volume="$(pwd)/src/Prodev_slam_jazzy/Prodev_simulation:/ros2_ws/src/Prodev_simulation" \
     --volume="$(pwd)/src/Prodev_slam_jazzy/Prodev_bringup:/ros2_ws/src/Prodev_bringup" \
+    --volume="$(pwd)/src/Prodev_slam_jazzy/Prodev_slam:/ros2_ws/src/Prodev_slam" \
     --env="DISPLAY=$DISPLAY" \
     --env="QT_X11_NO_MITSHM=1" \
     --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
@@ -107,7 +117,7 @@ bash src/Prodev_slam_jazzy/scripts/docker_run.sh --gui --wsl
 
 - `--build`：强制重新构建 Docker 镜像
 - `--gui`：启用 X11 转发，支持 RViz2 / Gazebo 显示
-- `--dev`：挂载本地 `Prodev_simulation` 和 `Prodev_bringup` 源码
+- `--dev`：挂载本地 `Prodev_simulation`、`Prodev_bringup` 和 `Prodev_slam` 源码
 - `--mirror <official|ustc>`：选择 apt 镜像源，默认 `official`
 - `--wsl`：针对 Windows WSL2 调整 X11 和 GPU 参数
 
@@ -142,6 +152,12 @@ source /ros2_ws/install/setup.bash
 
 # 启动 Gazebo 仿真（仿真包）
 ros2 launch Prodev_simulation gazebo_sim.launch.py
+
+# 启动 Cartographer SLAM（含 rviz2 可视化）
+ros2 launch Prodev_slam cartographer.launch.py
+
+# 启动完整仿真 + SLAM 一体化
+ros2 launch Prodev_slam slam_sim.launch.py
 
 # 或启动整体系统 bringup（顶层入口）
 ros2 launch Prodev_bringup prodev_bringup.launch.py
