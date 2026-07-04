@@ -71,6 +71,12 @@ All notable changes to this project will be documented in this file.
 - Add complete SLAM mapping workflow (keyboard control, map saving).
 - Add NVIDIA Container Toolkit prerequisite documentation.
 - Add `--no-cache` independent option to `docker_run.sh` for rebuilding without Docker cache.
+- Add saved Cartographer map file `Prodev_slam/maps/map.pbstream`.
+- Update README map saving section to use Cartographer services instead of nav2_map_server.
+- Update `Prodev_slam/CMakeLists.txt` install rules to include `maps` directory.
+- Configure DiffDrive plugin `odom_frame_id` and `child_frame_id` to remove Gazebo `robot/` prefix issue.
+- Restore ros_gz_bridge TF bridge (`/tf@tf2_msgs/msg/TFMessage[gz.msgs.Pose_V`).
+- Restore Cartographer config `provide_odom_frame = false` and `published_frame = "odom"`.
 
 ### Fixed
 - Fix DiffDrive plugin missing TF bridge: add `<tf_topic>/tf</tf_topic>` to publish `odom → base_link` TF to ROS.

@@ -71,6 +71,12 @@
 - 添加 SLAM 建图完整流程说明（键盘控制、地图保存）。
 - 添加 NVIDIA Container Toolkit 环境要求说明。
 - `docker_run.sh` 添加 `--no-cache` 独立参数，源码有变更时强制无缓存构建。
+- 添加已保存的 Cartographer 地图文件 `Prodev_slam/maps/map.pbstream`。
+- 更新 README 保存地图部分，使用 Cartographer 服务替代 nav2_map_server。
+- 更新 `Prodev_slam/CMakeLists.txt` 安装规则，包含 `maps` 目录。
+- 配置 DiffDrive 插件 `odom_frame_id` 和 `child_frame_id`，消除 Gazebo `robot/` 前缀问题。
+- 恢复 ros_gz_bridge TF 桥接（`/tf@tf2_msgs/msg/TFMessage[gz.msgs.Pose_V`）。
+- 恢复 Cartographer 配置 `provide_odom_frame = false` 和 `published_frame = "odom"`。
 
 ### 修复
 - 修复 DiffDrive 插件缺少 TF 桥接：添加 `<tf_topic>/tf</tf_topic>`，使 `odom → base_link` TF 发布到 ROS。

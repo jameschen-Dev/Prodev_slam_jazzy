@@ -195,11 +195,23 @@ ros2 run teleop_twist_keyboard teleop_twist_keyboard
 
 ### 保存地图
 
-建图完成后，保存地图供 Nav2 导航使用：
+建图完成后，通过 Cartographer 服务保存地图：
 
 ```bash
-ros2 run nav2_map_server map_saver_cli -f ~/map
+# 冻结当前轨迹
+ros2 service call /finish_trajectory cartographer_ros_msgs/srv/FinishTrajectory "{trajectory_id: 0}"
+
+# 保存为 pbstream 格式（容器内）
+ros2 service call /write_state cartographer_ros_msgs/srv/WriteState "{filename: '/ros2_ws/map.pbstream'}"
 ```
+
+将地图从容器复制到主机：
+
+```bash
+docker cp prodev_jazzy_container:/ros2_ws/map.pbstream ~/map.pbstream
+```
+
+> 已保存的地图示例见 `Prodev_slam/maps/map.pbstream`。
 
 ### 其他启动方式
 
