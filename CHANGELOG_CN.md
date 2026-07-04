@@ -18,6 +18,12 @@
 - 添加 `LICENSE`，采用 GNU General Public License v3.0 (GPL-3.0) 开源协议。
 - 扩展 `slam_maze.world` 迷宫地图，添加新的外部边界和内部结构元素。
 - 在扩展迷宫区域添加内部 Z 字形隔墙。
+- 添加 `Prodev_slam` 功能包，集成 Cartographer 2D SLAM。
+- 添加 Cartographer 配置文件 `cartographer_2d.lua`。
+- 添加 `cartographer.launch.py` 启动文件，自动加载 rviz2 可视化。
+- 添加 `slam_sim.launch.py` 仿真 SLAM 一体化启动文件。
+- 添加 `rviz/cartographer.rviz` SLAM 可视化配置文件。
+- 使用二进制 `ros-jazzy-cartographer-ros` 和 `ros-jazzy-cartographer-rviz` 包，替代源码编译。
 
 ### 变更
 - 调整项目目录结构。
@@ -26,12 +32,15 @@
 - 更新 README，添加 Docker 构建/运行说明、镜像源选择和 WSL2 注意事项。
 - 更新 `.gitignore`，添加常见的 ROS2/IDE/系统文件忽略规则。
 - 重构 `Prodev_simulation` 功能包，使其成为自包含的功能包。
+- 更新 Dockerfile，添加 Cartographer 相关依赖（`ros-jazzy-cartographer-ros`、`ros-jazzy-cartographer-rviz`）。
+- 更新 README，添加 `Prodev_slam` 包说明和 SLAM 启动命令。
 
 ### 修复
 - 修复 `gz sim` 启动命令，移除无效的 `-f` 参数。
 - 修复 `Prodev_bringup` 功能包，移除不存在的 config/rviz 目录引用。
 - 调整机器人在 `slam_maze.world` 中的初始生成位置，避免与墙壁干涉。
 - 调整扩展迷宫区域新内墙的位姿和尺寸，避免碰撞问题。
+- 修复机器人驱动轮轴方向，纠正前进方向。
 
 ## [0.0.1] - 2026-06-25
 
