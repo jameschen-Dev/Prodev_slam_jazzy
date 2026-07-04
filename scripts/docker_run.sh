@@ -65,8 +65,8 @@ fi
 
 # Build image if requested or if image does not exist
 if [ "$BUILD" = true ] || [ -z "$(docker images -q ${IMAGE_NAME} 2>/dev/null)" ]; then
-    echo "Building Docker image: ${IMAGE_NAME} (mirror: ${MIRROR})..."
-    docker build -t ${IMAGE_NAME} --build-arg MIRROR=${MIRROR} -f ${PROJECT_ROOT}/Dockerfile ${PROJECT_ROOT}
+    echo "Building Docker image: ${IMAGE_NAME} (mirror: ${MIRROR}, no-cache)..."
+    docker build --no-cache -t ${IMAGE_NAME} --build-arg MIRROR=${MIRROR} -f ${PROJECT_ROOT}/Dockerfile ${PROJECT_ROOT}
 fi
 
 # Stop and remove existing container with same name
