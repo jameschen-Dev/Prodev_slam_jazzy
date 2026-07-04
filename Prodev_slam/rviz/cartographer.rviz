@@ -6,6 +6,14 @@ Panels:
 Visualization Manager:
   Class: ""
   Displays:
+    - Alpha: 1
+      Class: rviz_default_plugins/RobotModel
+      Enabled: true
+      Name: RobotModel
+      Value: true
+      Description Source: Topic
+      Description Topic:
+        Value: /robot_description
     - Alpha: 0.7
       Class: rviz_default_plugins/Map
       Color Scheme: Map
@@ -82,6 +90,8 @@ Visualization Manager:
     Frame Rate: 30
   Name: root
   Tools:
+    - Class: rviz_default_plugins/Interact
+    - Class: rviz_default_plugins/MoveCamera
     - Class: rviz_default_plugins/FocusCamera
     - Class: rviz_default_plugins/Measure
     - Class: rviz_default_plugins/SetInitialPose
