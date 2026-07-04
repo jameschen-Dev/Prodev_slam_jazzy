@@ -61,6 +61,15 @@ All notable changes to this project will be documented in this file.
 - Adjust robot initial spawn position to avoid wall collision in `slam_maze.world`.
 - Adjust poses and dimensions for new inner walls in extended maze region.
 - Fix robot drive wheel axis direction to correct forward movement.
+- Fix `rviz/cartographer.rviz` Panel class names to use correct ROS2 Jazzy classes.
+
+## [0.0.2] - 2026-07-05 (Supplement)
+
+### Added
+- Add rear caster wheel to robot model for improved stability.
+- Add robot model description and sensor configuration to README.
+- Add complete SLAM mapping workflow (keyboard control, map saving).
+- Add NVIDIA Container Toolkit prerequisite documentation.
 
 ## [0.0.1] - 2026-06-25
 

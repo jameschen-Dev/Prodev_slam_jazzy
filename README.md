@@ -32,6 +32,20 @@ Prodev_slam_jazzy/
 - **ROS2 版本**: Jazzy Jalisco
 - **仿真器**: Gazebo Sim (gz sim)
 - **构建工具**: colcon
+- **GPU 支持**（可选）：NVIDIA 驱动 + [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html)（用于 Docker 内 GPU 加速渲染）
+
+## 机器人模型
+
+项目使用差速驱动的圆柱底盘机器人，配备以下传感器：
+
+| 传感器 | 话题 | 规格 |
+|--------|------|------|
+| LiDAR | `/scan` | 360° 激光雷达，0.1-10m，10Hz |
+| IMU | `/imu` | 100Hz |
+| Odometry | `/odom` | 差速驱动里程计，100Hz |
+| Camera | `/camera` | 640×480 RGB，30Hz |
+
+**运动控制**：通过 `/cmd_vel`（`geometry_msgs/msg/Twist`）发送速度命令。
 
 ## Docker 部署
 
@@ -149,17 +163,47 @@ docker build --no-cache -t prodev_jazzy .
 ```bash
 # Source 工作空间
 source /ros2_ws/install/setup.bash
+```
 
-# 启动 Gazebo 仿真（仿真包）
+### 方式一：完整仿真 + SLAM 一键启动
+
+```bash
+ros2 launch Prodev_slam slam_sim.launch.py
+```
+
+### 方式二：分别启动
+
+```bash
+# 终端1：启动 Gazebo 仿真
 ros2 launch Prodev_simulation gazebo_sim.launch.py
 
-# 启动 Cartographer SLAM（含 rviz2 可视化）
+# 终端2：启动 Cartographer SLAM（含 rviz2 可视化）
 ros2 launch Prodev_slam cartographer.launch.py
+```
 
-# 启动完整仿真 + SLAM 一体化
-ros2 launch Prodev_slam slam_sim.launch.py
+### 键盘控制机器人
 
-# 或启动整体系统 bringup（顶层入口）
+```bash
+ros2 run teleop_twist_keyboard teleop_twist_keyboard
+```
+
+操作方式：`i` 前进 / `,` 后退 / `j` 左转 / `l` 右转 / `k` 停止
+
+### 保存地图
+
+建图完成后，保存地图供 Nav2 导航使用：
+
+```bash
+ros2 run nav2_map_server map_saver_cli -f ~/map
+```
+
+### 其他启动方式
+
+```bash
+# 仅启动仿真（不含 SLAM）
+ros2 launch Prodev_simulation gazebo_sim.launch.py
+
+# 启动整体系统 bringup（顶层入口）
 ros2 launch Prodev_bringup prodev_bringup.launch.py
 ```
 
