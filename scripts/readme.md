@@ -17,6 +17,7 @@ bash scripts/docker_run.sh [options]
 | 选项 | 说明 |
 |------|------|
 | `--build` | 强制重新构建 Docker 镜像 |
+| `--no-cache` | 无缓存重新构建（源码有变更时使用，隐含 `--build`） |
 | `--gui` | 启用 GUI 支持（X11 转发），自动挂载 NVIDIA GPU（RTX 5070） |
 | `--dev` | 挂载本地源码到容器（开发模式），包含 `Prodev_simulation`、`Prodev_bringup`、`Prodev_slam` |
 | `--mirror <official\|ustc>` | 选择 apt 镜像源，默认 `official`。国内用户推荐使用 `ustc`（中科大） |
@@ -40,6 +41,9 @@ bash scripts/docker_run.sh --build --gui
 
 # 使用中科大镜像源构建（适合国内网络）
 bash scripts/docker_run.sh --build --mirror ustc
+
+# 无缓存构建（源码有变更时使用）
+bash scripts/docker_run.sh --no-cache --gui --mirror ustc
 
 # WSL2 下启用 GUI
 bash scripts/docker_run.sh --gui --wsl

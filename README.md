@@ -120,6 +120,9 @@ bash src/Prodev_slam_jazzy/scripts/docker_run.sh --gui --dev
 # 强制重新构建镜像
 bash src/Prodev_slam_jazzy/scripts/docker_run.sh --build --gui
 
+# 无缓存构建（源码有变更时使用）
+bash src/Prodev_slam_jazzy/scripts/docker_run.sh --no-cache --gui --mirror ustc
+
 # 使用中科大镜像源构建（适合国内网络）
 bash src/Prodev_slam_jazzy/scripts/docker_run.sh --build --mirror ustc
 
@@ -130,6 +133,7 @@ bash src/Prodev_slam_jazzy/scripts/docker_run.sh --gui --wsl
 **参数说明：**
 
 - `--build`：强制重新构建 Docker 镜像
+- `--no-cache`：无缓存重新构建（源码有变更时使用，隐含 `--build`）
 - `--gui`：启用 X11 转发，支持 RViz2 / Gazebo 显示
 - `--dev`：挂载本地 `Prodev_simulation`、`Prodev_bringup` 和 `Prodev_slam` 源码
 - `--mirror <official|ustc>`：选择 apt 镜像源，默认 `official`

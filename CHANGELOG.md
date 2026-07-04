@@ -70,6 +70,12 @@ All notable changes to this project will be documented in this file.
 - Add robot model description and sensor configuration to README.
 - Add complete SLAM mapping workflow (keyboard control, map saving).
 - Add NVIDIA Container Toolkit prerequisite documentation.
+- Add `--no-cache` independent option to `docker_run.sh` for rebuilding without Docker cache.
+
+### Fixed
+- Fix DiffDrive plugin missing TF bridge: add `<tf_topic>/tf</tf_topic>` to publish `odom → base_link` TF to ROS.
+- Fix rviz Map display QoS Durability Policy from Volatile to Transient Local, resolving map not displaying.
+- Fix rviz config missing Interact tool and RobotModel display.
 
 ## [0.0.1] - 2026-06-25
 

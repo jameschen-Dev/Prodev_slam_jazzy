@@ -70,6 +70,12 @@
 - 添加机器人模型描述和传感器配置说明到 README。
 - 添加 SLAM 建图完整流程说明（键盘控制、地图保存）。
 - 添加 NVIDIA Container Toolkit 环境要求说明。
+- `docker_run.sh` 添加 `--no-cache` 独立参数，源码有变更时强制无缓存构建。
+
+### 修复
+- 修复 DiffDrive 插件缺少 TF 桥接：添加 `<tf_topic>/tf</tf_topic>`，使 `odom → base_link` TF 发布到 ROS。
+- 修复 rviz Map 显示项 QoS Durability Policy 从 Volatile 改为 Transient Local，解决地图不显示问题。
+- 修复 rviz 配置缺少 Interact 工具和 RobotModel 显示项。
 
 ## [0.0.1] - 2026-06-25
 
